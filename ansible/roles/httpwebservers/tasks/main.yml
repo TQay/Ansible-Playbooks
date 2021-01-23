@@ -1,0 +1,12 @@
+---
+- name: download httpd package
+  package:
+    name: httpd 
+    state: latest 
+  
+- name: use httpd template
+  template:
+    src: httpd.j2
+    dest: /var/www/html/index.html  
+  notify:
+  - restart httpd

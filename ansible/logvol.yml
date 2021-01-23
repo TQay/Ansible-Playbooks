@@ -1,0 +1,12 @@
+---
+
+- hosts: customgroup 
+  become: ansible
+  tasks: 
+    - name: Create a logical volume of 512m with disk /dev/sdb
+      lvol:
+        vg: ansiblevolgrp
+        lv: ansilbelogvol
+        size: 512m
+        pvs: /dev/sdb
+

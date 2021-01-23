@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: yes
+  vars:
+    target_service: nfs
+    target_state: started
+  tasks: 
+    - name: start httpd service on machine
+      service: 
+        name: "{{ target_service }}"
+        state: "{{ target_state }}"
+      notify:
+      - Download package
+
+  handlers:
+    - name: Download package
+      package:
+        name: tree
+        state: latest
